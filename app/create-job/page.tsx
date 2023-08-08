@@ -4,7 +4,7 @@ import React,{ChangeEvent, useState} from 'react'
 import { InputWithLabel } from '../jobs/client'
 import { prisma } from '@/lib/prisma'
 import { Button } from '@/components/ui/button'
-import createJobs from '@/actions/actions'
+import createJobs from '@/actions/create-actions'
 
 
 const initialState = {
@@ -65,7 +65,6 @@ export default function page() {
             id='location'
             placeholder='location'
             label='location'
-            defaultValue='location'
             value={state.location}
             onChange={onChange}
             name='location'
