@@ -1,30 +1,43 @@
 'use client'
 
 
-import React,{ChangeEvent, useState} from 'react'
+import React,{ChangeEvent, useEffect, useState} from 'react'
 import createJobs from "@/actions/create-actions"
 import { InputWithLabel } from '../jobs/inputJob'
 import { Button } from '@/components/ui/button'
+import { DropDown } from '@/components/dropdown'
 
 const initialState = {
-
     title:'',
     companyName:'',
     location:'',
     salary:'',
-    type:'',
-    experienceLevel:'',
-    shortDescription:'',
-    description:'',
-    applyUrl:''
-    
+    type:''
     }
+
+
+    const jobType = [
+        {
+          value:'Full-Time',
+          label:'Full-Time'
+        },
+        {
+          value:'Part-Time',
+          label:'Part-Time'
+        },
+      ]
     
 
 export default function CreateJobClient() {
 
-    const [state,setState] = useState(initialState)
+    const [value, setValue] = useState('')
+    const [state,setState] = useState({...initialState, type:''})
 
+
+    useEffect(() => {
+        setState((prevState) => ({ ...prevState, type: value }));
+      }, [value]); // Listen for changes in the 'value'
+    
 
     function onChange(event:ChangeEvent<HTMLInputElement>) {
           setState({ ...state, [event.target.name]: event.target.value });
@@ -32,7 +45,7 @@ export default function CreateJobClient() {
        
   return (
     <div>
-                    <form action={createJobs} className='container grid grid-cols-4 gap-12'>
+            <form action={createJobs} className='container grid grid-cols-4 gap-12'>
 
 
             <InputWithLabel
@@ -79,15 +92,9 @@ export default function CreateJobClient() {
 
             />
 
-            <InputWithLabel 
-            type='text'
-            id='type'
-            placeholder='type'
-            label='type'
-            onChange={onChange}
-            value={state.type}
-            name='type'
-            />
+        <input type="hidden" value={value} name='type' onChange={onChange}/>
+        <DropDown value={value} setValue={setValue} jobType={jobType}/>
+
             <Button type='submit' variant='outline'>Create</Button>
             </form>
     </div>

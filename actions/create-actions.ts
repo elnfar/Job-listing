@@ -13,6 +13,7 @@ export default async function createJobs(data:FormData) {
     const type = data.get('type') as string
 
 
+
     await prisma.jobListing.create({
       data: {
         title:title,
