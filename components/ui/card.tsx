@@ -1,3 +1,5 @@
+'use client'
+
 import { Button } from "./button";
 
 
@@ -16,7 +18,7 @@ export default function Card({title,companyName,location,salary,type,desc}:Card)
     
 
   return (
-    <div className="w-[500px] min-h-[240px] shadow-lg shadow-slate-700 flex flex-col p-4 border-4">
+    <div className="w-[600px] min-h-[240px] shadow-lg shadow-slate-700 flex flex-col p-4 border-4">
         
         <div>
             <h1 className="text-[2rem]">{title}</h1>

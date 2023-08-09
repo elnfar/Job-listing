@@ -1,10 +1,10 @@
 'use client'
 
 import React,{ChangeEvent, useState} from 'react'
-import { InputWithLabel } from '../jobs/client'
-import { prisma } from '@/lib/prisma'
+
 import { Button } from '@/components/ui/button'
 import createJobs from '@/actions/create-actions'
+import { InputWithLabel } from '../jobs/inputJob'
 
 
 const initialState = {
@@ -28,7 +28,6 @@ export default function page() {
 
   function onChange(event:ChangeEvent<HTMLInputElement>) {
 		setState({ ...state, [event.target.name]: event.target.value });
-        console.log(event.target.value)
 	}
      
 
@@ -37,7 +36,7 @@ export default function page() {
         <form action={createJobs} className='container grid grid-cols-4 gap-12'>
 
 
-            <InputWithLabel 
+            <InputWithLabel
             type='text'
             id='title'
             placeholder='title'
@@ -87,7 +86,6 @@ export default function page() {
             placeholder='type'
             label='type'
             onChange={onChange}
-
             value={state.type}
             name='type'
             />
