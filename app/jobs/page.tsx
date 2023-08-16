@@ -1,8 +1,5 @@
-import { DropDown } from "@/components/dropdown";
 
 import getAllJobs from "@/actions/all-jobs";
-import Card from "@/components/ui/card";
-import { InputWithLabel } from "./inputJob";
 import ClientJob from "./client-job";
 
 
@@ -23,7 +20,6 @@ export default async function Jobs() {
                       <div className="">
                         <ClientJob jobs={jobs}/>
                       </div>
-
     </div>
   )
 }

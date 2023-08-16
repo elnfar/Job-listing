@@ -1,9 +1,11 @@
 'use client'
 
+import deleteJob from "@/actions/delete-job";
 import { Button } from "./button";
-
+import { useRouter } from "next/navigation";
 
 type Card = {
+    id:string
     title:string,
     companyName:string,
     location:string,
@@ -12,9 +14,10 @@ type Card = {
     desc:string
 }
 
-export default function Card({title,companyName,location,salary,type,desc}:Card) {
+export default function Card({title,id,companyName,location,salary,type,desc}:Card) {
 
 
+    const router =useRouter();
     
 
   return (
@@ -37,10 +40,16 @@ export default function Card({title,companyName,location,salary,type,desc}:Card)
 
 
 
-        <div className="pt-6 ml-auto mr-2">
-        <Button className="">View More</Button>
-        </div>
+        <div className="pt-6 ml-auto mr-2 flex gap-4">
 
+              <form action={deleteJob}>
+                    <input type="hidden" name="jobId" value={id} id="jobId"/>
+                    <Button className="" variant="secondary">Delete</Button>
+            </form>
+
+          <Button className="" onClick={() => router.push(`/jobs/${id}`)}>View More</Button>
+
+        </div>
     </div>
   )
 }

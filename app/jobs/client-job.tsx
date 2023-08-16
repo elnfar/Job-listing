@@ -87,7 +87,7 @@ export default function ClientJob({jobs}:ClientJob) {
 
 
                             <InputWithLabel
-                            type="text"
+                            type="number"
                             label="Salary"
                             id="Salary"
                             placeholder="minimum salary..."
@@ -103,9 +103,10 @@ export default function ClientJob({jobs}:ClientJob) {
 
           </div>
 
-          <div className="grid grid-cols-2  gap-y-6 container">
-                      {filteredJob.map((item:any) => (
+          <div className="grid grid-cols-2 py-8 gap-y-6 container">
+                      {filteredJob.map((item) => (
                         <Card
+                        id={item.id}
                         title={item.title}
                         type={item.type}
                         location={item.location}
